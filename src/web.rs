@@ -1992,10 +1992,13 @@ mod tests {
                 "explicit",
                 0.95,
             )?;
+            let now = chrono::Utc::now();
+            let started = now.to_rfc3339();
+            let finished = (now + chrono::Duration::seconds(1)).to_rfc3339();
             d.log_reflector_run(
                 123,
-                "2026-02-13T00:00:00Z",
-                "2026-02-13T00:00:01Z",
+                &started,
+                &finished,
                 2,
                 1,
                 0,
