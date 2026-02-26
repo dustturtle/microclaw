@@ -3436,10 +3436,13 @@ mod tests {
             .insert_memory_with_metadata(Some(100), "temporary thought", "EVENT", "reflector", 0.20)
             .unwrap();
         db.archive_memory(stale_id).unwrap();
+        let now = chrono::Utc::now();
+        let started = now.to_rfc3339();
+        let finished = (now + chrono::Duration::seconds(1)).to_rfc3339();
         db.log_reflector_run(
             100,
-            "2026-02-13T00:00:00Z",
-            "2026-02-13T00:00:01Z",
+            &started,
+            &finished,
             3,
             1,
             1,
